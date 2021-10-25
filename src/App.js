@@ -64,7 +64,7 @@ function App() {
    );
 }
 
-/*function Counter() {
+function Counter() {
   const [like,setlike]= useState(0);
   const [dislike,setdislike]= useState(0);
   return(
@@ -74,7 +74,7 @@ function App() {
         
     </div>
   )
-}*/
+}
 
 
 function Movie({name,poster,rating,description}) {
@@ -94,7 +94,7 @@ function Movie({name,poster,rating,description}) {
   <p className="movie-description"> {description} </p>
       
       
-       
+       <Counter/>
 
     </div>
   );
