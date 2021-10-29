@@ -1,14 +1,16 @@
 .App {
-  text-align: center;
+ 
+ font-size:15px;
 }
 
 body {
   height: auto;
-  display: flex;
+  /* display: flex;
 
   align-items: center;
-  justify-content: center;
-  margin: 20px;
+  justify-content: center; */
+   /* margin: 40px 0px;  */
+  background-color:white;
 }
 
 .movie-list {
@@ -53,7 +55,8 @@ body {
   display: flex;
   flex-direction: column;
   gap:10px;
-  width:500px;
+  margin-top: 15px;
+  
   
  
 }
@@ -68,7 +71,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  /* padding: 10px; */
   color: rgb(189, 33, 33);
 }
 
@@ -107,6 +110,17 @@ body {
   border-radius: 10px;
 }
 
-body {
-  background-color:white;
+
+:root{
+  font-size:10px;
 }
+
+.movie-detail-container{
+ max-width:120rem;
+}
+
+
+.colors{
+  margin:3rem;
+}
+
