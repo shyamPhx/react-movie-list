@@ -96,16 +96,18 @@ function App() {
           <li>
             <Link to="/">Home</Link>
           </li>
+          
           <li>
             <Link to="/movies">Movies</Link>
           </li>
 
+  
           <li>
-            <Link to="/colors">ColorBox</Link>
+            <Link to="/add">Add movies</Link>
           </li>
 
           <li>
-            <Link to="/add">Add movies</Link>
+            <Link to="/colors">ColorBox</Link>
           </li>
         </ul>
       </nav>
