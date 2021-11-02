@@ -63,7 +63,7 @@ export function AddMovie({ movies, setMovies }) {
 
 
 
-      <Button onClick={addmovie} variant="contained" color="success">
+      <Button onClick={addmovie} variant="contained" color="error">
         SAVE
       </Button>
     </div>

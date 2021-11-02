@@ -9,6 +9,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import * as React from 'react';
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 
 import Box from '@mui/material/Box';
 
@@ -158,10 +159,16 @@ function App() {
   ];
   const [movies, setMovies] = useState(INITIAL_MOVIES);
   const history = useHistory();
+  const theme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
 
 
    
   return (
+    <ThemeProvider theme={theme}>
     <div className="App">
        <Box sx={{ flexGrow: 1 }}>
       <AppBar color="primary"  position="static">
@@ -201,6 +208,7 @@ function App() {
         </Route>
       </Switch>
     </div>
+    </ThemeProvider>
   );
 }
 
