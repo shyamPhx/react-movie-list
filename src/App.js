@@ -10,6 +10,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import * as React from 'react';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 
 import Box from '@mui/material/Box';
 
@@ -169,6 +170,7 @@ function App() {
    
   return (
     <ThemeProvider theme={theme}>
+      <Paper style={{minHeight:"100vh"}} elevation={7}>
     <div className="App">
        <Box sx={{ flexGrow: 1 }}>
       <AppBar color="primary"  position="static">
@@ -177,6 +179,7 @@ function App() {
       <Button onClick={()=> history.push("/movies")}  color="inherit"  >Movies</Button>
       <Button onClick={()=> history.push("/add")}  color="inherit"  >Add movies</Button>
       <Button onClick={()=> history.push("/colors")}  color="inherit"  >ColorBox</Button>
+      <Button   color="inherit"  >Light mode</Button>
       </Toolbar>
      
       </AppBar>
@@ -208,6 +211,7 @@ function App() {
         </Route>
       </Switch>
     </div>
+    </Paper>
     </ThemeProvider>
   );
 }
