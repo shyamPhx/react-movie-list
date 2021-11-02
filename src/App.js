@@ -1,11 +1,16 @@
 import "./App.css";
 import { Movielist } from "./Movielist";
-import { Switch, Route, Link, useParams,useHistory } from "react-router-dom";
+import { Switch, Route, Link, useParams, useHistory } from "react-router-dom";
 import { Colorlist } from "./Colorlist";
 import { AddMovie } from "./AddMovie";
 import { useState } from "react";
-import Button from '@mui/material/Button';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import Button from "@mui/material/Button";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import * as React from 'react';
+
+import Box from '@mui/material/Box';
 
 function App() {
   const INITIAL_MOVIES = [
@@ -88,31 +93,87 @@ function App() {
       description: `When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.`,
       trailer: "https://www.youtube.com/embed/EXeTwQWrcwY",
     },
+
+    {
+      name: "Interstellar",
+      poster:
+        "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg ",
+      rating: 8.6,
+      description: `A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.`,
+      trailer: "https://www.youtube.com/embed/zSWdZVtXT7E",
+    },
+
+    {
+      name: "The Shawshank Redemption",
+      poster:
+        "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
+      rating: 9.3,
+      description: `Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.`,
+      trailer: "https://www.youtube.com/embed/NmzuHjWmXOc",
+    },
+
+    {
+      name: "Gladiator",
+      poster:
+        "https://m.media-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_FMjpg_UX1000_.jpg",
+      rating: 8.5,
+      description: `A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.`,
+      trailer: "https://www.youtube.com/embed/owK1qxDselE",
+    },
+
+    {
+      name: "Seven",
+      poster:
+        "https://m.media-amazon.com/images/M/MV5BNDMzZDNlYjktZTc3MS00YjBhLTk3OWUtYjE5YTZlNzBmMjA3XkEyXkFqcGdeQXVyMTAzMDM4MjM0._V1_.jpg",
+      rating: 8.6,
+      description: `Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.`,
+      trailer: "https://www.youtube.com/embed/znmZoVkCjpI",
+    },
+
+    {
+      name: "The usual suspects",
+      poster: "https://flxt.tmsimg.com/assets/p16422_p_v10_af.jpg",
+      rating: 8.5,
+      description: `A sole survivor tells of the twisty events leading up to a horrific gun battle on a boat, which began when five criminals met at a seemingly random police lineup.`,
+      trailer: "https://www.youtube.com/embed/oiXdPolca5w",
+    },
+
+    {
+      name: "Taxi Driver",
+      poster:
+        "https://cdn.shopify.com/s/files/1/0969/9128/products/Taxi_Driver_-_Robert_De_Niro_-_Hollywood_Movie_Poster_Collection_72fc52e7-772e-4e0e-aecc-90a118aa242b.jpg?v=1557835180",
+      rating: 8.2,
+      description: `A mentally unstable veteran works as a nighttime taxi driver in New York City, where the perceived decadence and sleaze fuels his urge for violent action by attempting to liberate a presidential campaign worker and an underage prostitute.`,
+      trailer: "https://www.youtube.com/embed/44gB58YS53A",
+    },
+
+    {
+      name: "The Matrix",
+      poster:
+        "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
+      rating: 8.7,
+      description: `When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.`,
+      trailer: "https://www.youtube.com/embed/vKQi3bBA1y8",
+    },
   ];
   const [movies, setMovies] = useState(INITIAL_MOVIES);
+  const history = useHistory();
 
+
+   
   return (
     <div className="App">
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-
-          <li>
-            <Link to="/movies">Movies</Link>
-          </li>
-
-  
-          <li>
-            <Link to="/add">Add movies</Link>
-          </li>
-
-          <li>
-            <Link to="/colors">ColorBox</Link>
-          </li>
-        </ul>
-      </nav>
+       <Box sx={{ flexGrow: 1 }}>
+      <AppBar color="primary"  position="static">
+      <Toolbar>
+      <Button  onClick={()=> history.push("/")} color="inherit"  >Home</Button>
+      <Button onClick={()=> history.push("/movies")}  color="inherit"  >Movies</Button>
+      <Button onClick={()=> history.push("/add")}  color="inherit"  >Add movies</Button>
+      <Button onClick={()=> history.push("/colors")}  color="inherit"  >ColorBox</Button>
+      </Toolbar>
+     
+      </AppBar>
+      </Box>
 
       <Switch>
         <Route exact path="/">
@@ -131,8 +192,6 @@ function App() {
           <AddMovie movies={movies} setMovies={setMovies} />
         </Route>
 
-      
-
         <Route path="/colors">
           <Colorlist />
         </Route>
@@ -148,7 +207,7 @@ function App() {
 function MovieDetails({ movies }) {
   const { id } = useParams();
   const movie = movies[id];
-  const history= useHistory();
+  const history = useHistory();
   console.log(id, movies, movie);
   return (
     <div className="movie-trailer">
@@ -171,15 +230,15 @@ function MovieDetails({ movies }) {
         <p>{movie.description}</p>
 
         <div className="back-btn">
-        <Button  
-        variant="contained" 
-        onClick={() => history.goBack()}
-        startIcon={<ArrowBackIosIcon/>} >Back</Button>
-         
+          <Button
+            variant="contained"
+            onClick={() => history.goBack()}
+            startIcon={<ArrowBackIosIcon />}
+          >
+            Back
+          </Button>
         </div>
-
       </div>
-    
     </div>
   );
 }
