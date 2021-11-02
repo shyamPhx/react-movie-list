@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 export function Colorlist() {
-  const [color, setcolor] = useState("white");
+  const [color, setcolor] = useState("grey");
   // setcolor will help to change a color.
   const styles = { backgroundColor: color, color: "black" };
   const INITIAL_COLORS = ["crimson", "aquamarine", "limegreen", "grey", "brown"];

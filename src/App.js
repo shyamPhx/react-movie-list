@@ -6,13 +6,18 @@ import { AddMovie } from "./AddMovie";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import * as React from 'react';
-import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
-
-import Box from '@mui/material/Box';
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import * as React from "react";
+import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import HomeIcon from "@mui/icons-material/Home";
+import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
+import ColorLensIcon from "@mui/icons-material/ColorLens";
+import AddIcon from "@mui/icons-material/Add";
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 function App() {
   const INITIAL_MOVIES = [
@@ -158,60 +163,91 @@ function App() {
       trailer: "https://www.youtube.com/embed/vKQi3bBA1y8",
     },
   ];
+
+  const [mode, setMode] = useState("light");
+
   const [movies, setMovies] = useState(INITIAL_MOVIES);
   const history = useHistory();
   const theme = createTheme({
     palette: {
-      mode: 'dark',
+      mode: mode,
     },
   });
 
-
-   
   return (
     <ThemeProvider theme={theme}>
-      <Paper style={{minHeight:"100vh"}} elevation={7}>
-    <div className="App">
-       <Box sx={{ flexGrow: 1 }}>
-      <AppBar color="primary"  position="static">
-      <Toolbar>
-      <Button  onClick={()=> history.push("/")} color="inherit"  >Home</Button>
-      <Button onClick={()=> history.push("/movies")}  color="inherit"  >Movies</Button>
-      <Button onClick={()=> history.push("/add")}  color="inherit"  >Add movies</Button>
-      <Button onClick={()=> history.push("/colors")}  color="inherit"  >ColorBox</Button>
-      <Button   color="inherit"  >Light mode</Button>
-      </Toolbar>
-     
-      </AppBar>
-      </Box>
+      <Paper style={{ minHeight: "100vh" }} elevation={7}>
+        <div className="App">
+          <Box sx={{ flexGrow: 1 }}>
+            <AppBar color="primary" position="static">
+              <Toolbar>
+                <Button
+                  startIcon={<HomeIcon />}
+                  onClick={() => history.push("/")}
+                  color="inherit"
+                >
+                  Home
+                </Button>
+                <Button
+                  startIcon={<LocalMoviesIcon />}
+                  onClick={() => history.push("/movies")}
+                  color="inherit"
+                >
+                  Movies
+                </Button>
+                <Button
+                  startIcon={<AddIcon />}
+                  onClick={() => history.push("/add")}
+                  color="inherit"
+                >
+                  Add movies
+                </Button>
+                <Button
+                  startIcon={<ColorLensIcon />}
+                  onClick={() => history.push("/colors")}
+                  color="inherit"
+                >
+                  ColorBox
+                </Button>
+                <Button
+                  onClick={() => setMode(mode === "light" ? "dark" : "light")}
+                  startIcon={mode === "light" ?<Brightness4Icon />:<Brightness7Icon/>}
+                  style={{ marginLeft: "auto" }}
+                  color="inherit"
+                >
+                  {mode === "light" ? "dark" : "light"} mode
+                </Button>
+              </Toolbar>
+            </AppBar>
+          </Box>
 
-      <Switch>
-        <Route exact path="/">
-          <Welcome />
-        </Route>
+          <Switch>
+            <Route exact path="/">
+              <Welcome />
+            </Route>
 
-        <Route path="/movies">
-          <Movielist movies={movies} setMovies={setMovies} />
-        </Route>
+            <Route path="/movies">
+              <Movielist movies={movies} setMovies={setMovies} />
+            </Route>
 
-        <Route path="/trailer/:id">
-          <MovieDetails movies={movies} />
-        </Route>
+            <Route path="/trailer/:id">
+              <MovieDetails movies={movies} />
+            </Route>
 
-        <Route path="/add">
-          <AddMovie movies={movies} setMovies={setMovies} />
-        </Route>
+            <Route path="/add">
+              <AddMovie movies={movies} setMovies={setMovies} />
+            </Route>
 
-        <Route path="/colors">
-          <Colorlist />
-        </Route>
+            <Route path="/colors">
+              <Colorlist />
+            </Route>
 
-        <Route path="**">
-          <NotFound />
-        </Route>
-      </Switch>
-    </div>
-    </Paper>
+            <Route path="**">
+              <NotFound />
+            </Route>
+          </Switch>
+        </div>
+      </Paper>
     </ThemeProvider>
   );
 }
@@ -267,7 +303,7 @@ function NotFound() {
 }
 
 function Welcome() {
-  return <h1 className="welcome"> Welcome ALL!! 😁🙌 </h1>;
+  return <h1 className="welcome"> Welcome ALL!!! 😁🙌 </h1>;
 }
 
 export default App;
