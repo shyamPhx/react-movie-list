@@ -1,9 +1,11 @@
 import "./App.css";
 import { Movielist } from "./Movielist";
-import { Switch, Route, Link, useParams } from "react-router-dom";
+import { Switch, Route, Link, useParams,useHistory } from "react-router-dom";
 import { Colorlist } from "./Colorlist";
 import { AddMovie } from "./AddMovie";
 import { useState } from "react";
+import Button from '@mui/material/Button';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 function App() {
   const INITIAL_MOVIES = [
@@ -96,7 +98,7 @@ function App() {
           <li>
             <Link to="/">Home</Link>
           </li>
-          
+
           <li>
             <Link to="/movies">Movies</Link>
           </li>
@@ -118,7 +120,7 @@ function App() {
         </Route>
 
         <Route path="/movies">
-          <Movielist movies={movies} />
+          <Movielist movies={movies} setMovies={setMovies} />
         </Route>
 
         <Route path="/trailer/:id">
@@ -128,6 +130,8 @@ function App() {
         <Route path="/add">
           <AddMovie movies={movies} setMovies={setMovies} />
         </Route>
+
+      
 
         <Route path="/colors">
           <Colorlist />
@@ -144,6 +148,7 @@ function App() {
 function MovieDetails({ movies }) {
   const { id } = useParams();
   const movie = movies[id];
+  const history= useHistory();
   console.log(id, movies, movie);
   return (
     <div className="movie-trailer">
@@ -164,7 +169,17 @@ function MovieDetails({ movies }) {
           <p className="movie-rating">⭐{movie.rating}</p>
         </div>
         <p>{movie.description}</p>
+
+        <div className="back-btn">
+        <Button  
+        variant="contained" 
+        onClick={() => history.goBack()}
+        startIcon={<ArrowBackIosIcon/>} >Back</Button>
+         
+        </div>
+
       </div>
+    
     </div>
   );
 }
@@ -181,7 +196,7 @@ function NotFound() {
 }
 
 function Welcome() {
-  return <h1> Welcome ALL!! 😁🙌 </h1>;
+  return <h1 className="welcome"> Welcome ALL!! 😁🙌 </h1>;
 }
 
 export default App;

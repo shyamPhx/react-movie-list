@@ -8,16 +8,18 @@ export function AddMovie({ movies, setMovies }) {
   const [poster, setPoster] = useState(" ");
   const [rating, setRating] = useState(" ");
   const [description, setDescription] = useState(" ");
+  const [Trailer, setTrailer] = useState(" ");
   const setMovieName = (event) => setName(event.target.value);
   const resetmovieform = () => {
     setName("");
     setPoster("");
     setRating("");
     setDescription("");
+    setTrailer("");
   };
   const addmovie = () => {
-    console.log({ name, poster, rating, description });
-    const newMovie = { name, poster, rating, description };
+    console.log({ name, poster, rating, description,Trailer });
+    const newMovie = { name, poster, rating, description,Trailer };
     setMovies([...movies, newMovie]);
     resetmovieform();
   };
@@ -27,29 +29,50 @@ export function AddMovie({ movies, setMovies }) {
         placeholder="name"
         onChange={setMovieName}
         label="Name"
-        variant="outlined" />
+        variant="outlined"
+        color="error" />
 
       <TextField
         placeholder="poster url"
         onChange={(event) => setPoster(event.target.value)}
         label="Poster url"
-        variant="outlined" />
+        variant="outlined"
+        color="error" />
 
       <TextField
         placeholder="rating"
         onChange={(event) => setRating(event.target.value)}
         label="Rating"
-        variant="outlined" />
+        variant="outlined"
+        color="error" />
 
       <TextField
         placeholder="description"
         onChange={(event) => setDescription(event.target.value)}
         label="Description"
-        variant="outlined" />
+        variant="outlined"
+        color="error" />
 
-      <Button onClick={addmovie} variant="contained">
-        Add movie
+       <TextField
+        placeholder="Trailer"
+        onChange={(event) => setTrailer(event.target.value)}
+        label="Trailer"
+        variant="outlined"
+        color="error"
+        />
+
+
+
+      <Button onClick={addmovie} variant="contained" color="success">
+        SAVE
       </Button>
     </div>
   );
 }
+
+
+
+
+
+
+

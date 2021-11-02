@@ -30,8 +30,12 @@ body {
   font-size: 30px;
 }
 
+.btn3 {
+  font-size: 30px;
+}
+
 .like-dislike {
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   display: flex;
@@ -102,6 +106,7 @@ body {
 
 .movie-detail-container {
   max-width: 120rem;
+  
 }
 
 .movie-trailer {
@@ -110,4 +115,20 @@ body {
 
 .colors {
   margin: 3rem;
+}
+
+.welcome {
+  text-align: center;
+  margin: 250px;
+}
+
+.back-btn {
+  margin: 10px 10px;
+}
+
+.delete-edit-movie {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
 }

@@ -2,7 +2,7 @@
 import { Movie } from "./Movie";
 
 
-export function Movielist({movies}) {
+export function Movielist({movies, setMovies}) {
  
   return (
     <section>
@@ -17,8 +17,13 @@ export function Movielist({movies}) {
             rating={mv.rating}
             description={mv.description}
             id={index}
+            setMovies={setMovies}
+            movies={movies}
+            
           />
         ))}
+    
+     
       </div>
     </section>
   );

@@ -2,9 +2,13 @@ import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 
-export function Counter() {
+
+
+
+export function Counter({id,movies,setMovies}) {
   const [like, setlike] = useState(0);
   const [dislike, setdislike] = useState(0);
+  
   return (
     <div className="like-dislike">
       <IconButton onClick={() => setlike(like + 1)} color="primary" aria-label="upload picture" component="span">
@@ -20,6 +24,8 @@ export function Counter() {
           👎
         </Badge>
       </IconButton>
+
+     
 
 
     </div>
