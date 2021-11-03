@@ -16,8 +16,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
 import AddIcon from "@mui/icons-material/Add";
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 function App() {
   const INITIAL_MOVIES = [
@@ -211,7 +211,9 @@ function App() {
                 </Button>
                 <Button
                   onClick={() => setMode(mode === "light" ? "dark" : "light")}
-                  startIcon={mode === "light" ?<Brightness4Icon />:<Brightness7Icon/>}
+                  startIcon={
+                    mode === "light" ? <Brightness4Icon /> : <Brightness7Icon />
+                  }
                   style={{ marginLeft: "auto" }}
                   color="inherit"
                 >
