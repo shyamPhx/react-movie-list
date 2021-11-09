@@ -18,6 +18,9 @@ import ColorLensIcon from "@mui/icons-material/ColorLens";
 import AddIcon from "@mui/icons-material/Add";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
 
 function App() {
   const INITIAL_MOVIES = [
@@ -209,6 +212,15 @@ function App() {
                 >
                   ColorBox
                 </Button>
+
+                <Button
+                  startIcon={<SportsEsportsIcon />}
+                  onClick={() => history.push("/tic-tac-toe-game")}
+                  color="inherit"
+                >
+                  Tic-Tac-Toe
+                </Button>
+
                 <Button
                   onClick={() => setMode(mode === "light" ? "dark" : "light")}
                   startIcon={
@@ -242,6 +254,10 @@ function App() {
 
             <Route path="/colors">
               <Colorlist />
+            </Route>
+
+            <Route path="/tic-tac-toe-game">
+              <TicTacToe />
             </Route>
 
             <Route path="**">
@@ -306,6 +322,94 @@ function NotFound() {
 
 function Welcome() {
   return <h1 className="welcome"> Welcome ALL!!! 😁🙌 </h1>;
+}
+
+function TicTacToe() {
+  return <Game />;
+}
+
+function Game() {
+  const { width, height } = useWindowSize();
+  const [board, setBoard] = useState([
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+  ]);
+
+  // useState([ 0,1,2,3,4,5,6,7,8,]);
+
+  const decideWinner = (board) => {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (board[a] != null && board[a] === board[b] && board[b] === board[c]) {
+        console.log("winner", board[a]);
+        return board[a];
+      }
+    }
+    return null;
+  };
+
+  const winner = decideWinner(board);
+
+  const [isXTurn, setIsXTurn] = useState("true");
+  const handleClick = (index) => {
+    console.log(index);
+
+    if (!winner && board[index] === null) {
+      const boardCopy = [...board];
+      boardCopy[index] = isXTurn ? "X" : "O";
+      setBoard(boardCopy);
+      setIsXTurn(!isXTurn);
+    }
+  };
+
+  const restart = () => {
+    setBoard([null, null, null, null, null, null, null, null, null]);
+    setIsXTurn(true);
+  };
+
+  return (
+    <div className="full-game">
+     {winner ? <Confetti width={width} height={height} gravity={0.03} /> : "" }
+
+      <div className="board">
+        {board.map((val, index) => (
+          <GameBox val={val} onPlayerClick={() => handleClick(index)} />
+        ))}
+      </div>
+
+      {winner ? <h1>Winner is : {winner}</h1> : ""}
+      <Button onClick={restart} color="error" variant="contained">
+        Restart
+      </Button>
+    </div>
+  );
+}
+
+function GameBox({ val, onPlayerClick }) {
+  const styles = { color: val === "X" ? "lime" : "red" };
+  return (
+    <div style={styles} onClick={onPlayerClick} className="game-box">
+      {val}
+    </div>
+  );
 }
 
 export default App;
